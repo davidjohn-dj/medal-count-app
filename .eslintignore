@@ -1,0 +1,3 @@
+# Jest config uses CommonJS
+jest.config.js
+jest.config.cjs 

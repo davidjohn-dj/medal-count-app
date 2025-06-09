@@ -1,26 +1,259 @@
 @import "tailwindcss";
 
+
+/* Olympic Theme Variables */
 :root {
+  /* Light Theme */
   --background: #ffffff;
   --foreground: #171717;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --border: #e5e7eb;
+  --input: #ffffff;
+  --card: #ffffff;
+  --card-foreground: #171717;
+  --primary: #667eea;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #374151;
+  --accent: #f9fafb;
+  --accent-foreground: #374151;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  
+  /* Olympic Colors */
+  --olympic-blue: #0081c8;
+  --olympic-yellow: #fcb131;
+  --olympic-black: #000000;
+  --olympic-green: #00a651;
+  --olympic-red: #ee334e;
+  
+  /* Enhanced Olympic Colors for better visibility */
+  --olympic-blue-bright: #00bfff;
+  --olympic-yellow-bright: #ffd700;
+  --olympic-white: #ffffff;
+  --olympic-green-bright: #32cd32;
+  --olympic-red-bright: #ff1744;
+  
+  /* Medal Colors */
+  --gold: #ffd700;
+  --silver: #c0c0c0;
+  --bronze: #cd7f32;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, #764ba2 100%);
+  --gradient-olympic: linear-gradient(135deg, var(--olympic-blue) 0%, var(--olympic-red) 100%);
+  
+  /* Shadows */
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --shadow-button: 0 4px 8px rgba(76, 175, 80, 0.3);
+  --shadow-medal: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+  
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-mono: 'SFMono-Regular', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-gold: var(--gold);
+  --color-silver: var(--silver);
+  --color-bronze: var(--bronze);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Dark mode styles - controlled by .dark class */
+.dark {
+  /* Dark Theme Variables */
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --muted: #1f2937;
+  --muted-foreground: #9ca3af;
+  --border: #374151;
+  --input: #1f2937;
+  --card: #111827;
+  --card-foreground: #f9fafb;
+  --primary: #8b5cf6;
+  --primary-foreground: #ffffff;
+  --secondary: #1f2937;
+  --secondary-foreground: #f3f4f6;
+  --accent: #374151;
+  --accent-foreground: #f3f4f6;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  
+  /* Enhanced shadows for dark mode */
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-button: 0 4px 8px rgba(139, 92, 246, 0.3);
+  --shadow-medal: 0 2px 8px rgba(0, 0, 0, 0.3);
+  
+  /* Dark mode gradient adjustments */
+  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, #4c1d95 100%);
+  --gradient-olympic: linear-gradient(135deg, var(--olympic-blue-bright) 0%, var(--olympic-red-bright) 100%);
+}
+
+/* Custom component classes */
+@layer components {
+  .sort-button {
+    @apply bg-card text-card-foreground border-2 border-primary px-4 py-2 rounded-full cursor-pointer text-sm font-medium transition-all duration-300 ease-in-out hover:bg-primary hover:text-primary-foreground hover:-translate-y-0.5;
+    box-shadow: var(--shadow-button);
+  }
+  
+  .sort-button:hover {
+    box-shadow: var(--shadow-medal);
+  }
+  
+  .sort-button-active {
+    @apply bg-primary text-primary-foreground;
+    box-shadow: var(--shadow-medal);
+  }
+
+  .olympic-ring {
+    @apply w-10 h-10 border-4 rounded-full transition-all duration-300 ease-in-out hover:scale-110 hover:brightness-125;
+  }
+
+  .olympic-ring-mobile {
+    @apply w-8 h-8 border-2 rounded-full;
+  }
+
+  .medal-table-row {
+    @apply border-b border-border bg-card text-card-foreground transition-all duration-200 ease-in-out hover:bg-accent hover:scale-[1.005];
+  }
+  
+  .medal-table-row:hover {
+    box-shadow: var(--shadow-medal);
+  }
+
+  .medal-cell {
+    @apply text-center font-bold text-base min-w-20 px-2 py-4 text-foreground;
+  }
+
+  .flag-placeholder {
+    @apply w-8 h-6 rounded border border-border flex items-center justify-center text-xs text-muted-foreground font-semibold flex-shrink-0 bg-gradient-to-br from-muted to-border;
+  }
+
+  /* Flag sprite classes */
+  .flag-sprite {
+    @apply w-[1.875rem] h-[1.1875rem] bg-no-repeat border border-border flex-shrink-0 bg-card rounded transition-all duration-200 ease-in-out hover:scale-105;
+    background-image: url('/flags.png');
+    background-size: 28px 221px;
+    image-rendering: crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    box-shadow: var(--shadow-medal);
+  }
+  
+  .flag-sprite:hover {
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Flags appear to be in alphabetical order: AUT, BLR, CAN, CHN, FRA, GER, ITA, NED, NOR, RUS, SUI, SWE, USA */
+  .flag-aut { background-position: 0 0px; }
+  .flag-blr { background-position: 0 -17px; }
+  .flag-can { background-position: 0 -34px; }
+  .flag-chn { background-position: 0 -51px; }
+  .flag-fra { background-position: 0 -68px; }
+  .flag-ger { background-position: 0 -85px; }
+  .flag-ita { background-position: 0 -102px; }
+  .flag-ned { background-position: 0 -119px; }
+  .flag-nor { background-position: 0 -136px; }
+  .flag-rus { background-position: 0 -153px; }
+  .flag-sui { background-position: 0 -170px; }
+  .flag-swe { background-position: 0 -187px; }
+  .flag-usa { background-position: 0 -204px; }
+}
+
+/* Global styles */
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+
+  body {
+    @apply font-sans antialiased min-h-screen text-foreground transition-colors duration-300 ease-in-out;
+    background: var(--gradient-primary);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* Utility classes for theme colors */
+@layer utilities {
+  .text-gold {
+    color: var(--gold) !important;
+    font-weight: bold;
+  }
+  
+  .text-silver {
+    color: var(--silver) !important;
+    font-weight: bold;
+  }
+  
+  .text-bronze {
+    color: var(--bronze) !important;
+    font-weight: bold;
+  }
+  
+  .bg-card-theme {
+    @apply bg-[var(--card)] text-[var(--card-foreground)];
+  }
+  
+  .border-theme {
+    @apply border-[var(--border)];
+  }
+  
+  .shadow-theme {
+    @apply shadow-[var(--shadow-card)];
+  }
+  
+  .gradient-olympic {
+    background: var(--gradient-olympic);
+  }
+  
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .sortable-header {
+    @apply cursor-pointer transition-colors duration-200;
+  }
+
+  .sortable-header:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .sortable-header-active {
+    background: rgba(255, 255, 255, 0.2);
+  }
+} 
